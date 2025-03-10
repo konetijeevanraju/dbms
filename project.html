@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Booking</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-image: url('hotel.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Header */
+    header {
+      background-color: #f0f0f0;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    /* Main content */
+    .main-content {
+      position: relative;
+      height: 100vh;
+      background-image: url('hotelbg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .booking-form {
+      background-color: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+      margin-right: 100px;
+    }
+
+    .booking-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .booking-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .booking-form input, .booking-form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .booking-form button {
+      background-color: #f06292;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .text-overlay {
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .text-overlay h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .text-overlay p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .text-overlay button {
+      background-color: #f06292;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    /* Food Menu */
+    .food-menu {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 1200px;
+      margin: 50px auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .food-menu h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .food-menu ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .food-menu ul li {
+      background-color: #f06292;
+      color: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+      text-align: center;
+      width: 200px;
+    }
+
+    .food-menu ul li img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .food-menu ul li h3 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+
+    .food-menu ul li p {
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Hotel Grand</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <a href="#">👤</a>
+      <a href="#">🔍</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="text-overlay">
+      <h1>Booking A Luxury Hotel</h1>
+      <h1>In One Minute</h1>
+      <p>We have contact with the best 2.2k Luxury Hotels in all the world.</p>
+      <button>Discover now</button>
+    </div>
+
+    <div class="booking-form">
+      <h2>Book Your Hotel</h2>
+      <label for="checkin">Check-in:</label>
+      <input type="text" id="checkin" placeholder="mm/dd/yyyy">
+      <label for="checkout">Check-out:</label>
+      <input type="text" id="checkout" placeholder="mm/dd/yyyy">
+      <label for="adults">Guests:</label>
+      <select id="adults">
+        <option value="1">1 Adult</option>
+        <option value="2">2 Adults</option>
+        <option value="3">3 Adults</option>
+      </select>
+      <label for="rooms">Rooms:</label>
+      <select id="rooms">
+        <option value="1">1 Room</option>
+        <option value="2">2 Rooms</option>
+        <option value="3">3 Rooms</option>
+      </select>
+      <button>Check Availability</button>
+    </div>
+  </div>
+
+  <!-- Food Menu Section -->
+  <div class="food-menu">
+    <h2>Our Food Menu</h2>
+    <ul>
+      <li>
+        <img src="breakfast.jpg" alt="Breakfast Buffet">
+        <h3>Breakfast Buffet</h3>
+        <p>Fresh Fruits, Eggs, Pancakes, Juices</p>
+      </li>
+      <li>
+        <img src="seafood.webp" alt="Seafood Platter">
+        <h3>Seafood Platter</h3>
+        <p>Crab, Lobster, Prawns, Oysters</p>
+      </li>
+      <li>
+        <img src="veg.jpg" alt="Vegetarian Delight">
+        <h3>Vegetarian Delight</h3>
+        <p>Fresh Vegetables, Salads, Vegan Pasta</p>
+      </li>
+      <li>
+        <img src="burger.jpg" alt="">
+        <h3>Signature Burger</h3>
+        <p>Beef Patty, Cheese, Lettuce, Tomato</p>
+      </li>
+      <li>
+        <img src="juice.jpeg" alt="Exotic Drinks">
+        <h3>Exotic Drinks</h3>
+        <p>Cocktails, Mocktails, Fresh Juices</p>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
