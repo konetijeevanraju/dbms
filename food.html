@@ -1,0 +1,192 @@
+<style>
+  
+    /* Food Menu */
+    .food-menu {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 1200px;
+      margin: 50px auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .food-menu h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .food-menu ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .food-menu ul li {
+      background-color: #f06292;
+      color: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+      text-align: center;
+      width: 200px;
+    }
+
+    .food-menu ul li img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .food-menu ul li h3 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+
+    .food-menu ul li p {
+      font-size: 1em;
+    }
+
+    /* Room Section */
+    .room-menu {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 1200px;
+      margin: 50px auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .room-menu h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .room-menu ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .room-menu ul li {
+      background-color: #f06292;
+      color: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+      text-align: center;
+      width: 250px;
+    }
+
+    .room-menu ul li img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .room-menu ul li h3 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+
+    .room-menu ul li p {
+      font-size: 1em;
+    }
+
+    .room-menu ul li .price {
+      font-size: 1.2em;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+  
+  
+
+</head>
+<body>
+
+
+  <!-- Food Menu Section -->
+  <div class="food-menu">
+    <h2>Our Food Menu</h2>
+    <ul>
+      <li>
+        <img src="breakfast.jpg" alt="Breakfast Buffet">
+        <h3>Breakfast Buffet</h3>
+        <p>Fresh Fruits, Eggs, Pancakes, Juices</p>
+        <button onclick="addToCart('Breakfast Buffet', 500)">Add to Cart</button>
+      </li>
+      <li>
+        <img src="seafood.webp" alt="Seafood Platter">
+        <h3>Seafood Platter</h3>
+        <p>Crab, Lobster, Prawns, Oysters</p>
+        <button onclick="addToCart('Seafood Platter', 1200)">Add to Cart</button>
+      </li>
+      <li>
+        <img src="veg.jpg" alt="Vegetarian Delight">
+        <h3>Vegetarian Delight</h3>
+        <p>Fresh Vegetables, Salads, Vegan Pasta</p>
+        <button onclick="addToCart('Vegetarian Delight', 800)">Add to Cart</button>
+      </li>
+      <li>
+        <img src="burger.jpg" alt="Signature Burger">
+        <h3>Signature Burger</h3>
+        <p>Beef Patty, Cheese, Lettuce, Tomato</p>
+        <button onclick="addToCart('Signature Burger', 300)">Add to Cart</button>
+      </li>
+      <li>
+        <img src="juice.jpeg" alt="Exotic Drinks">
+        <h3>Exotic Drinks</h3>
+        <p>Cocktails, Mocktails, Fresh Juices</p>
+        <button onclick="addToCart('Exotic Drinks', 200)">Add to Cart</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Cart Section -->
+  <div class="cart">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: ₹<span id="cart-total">0</span></p>
+    <button onclick="checkout()">Checkout</button>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    // Function to add items to the cart
+    function addToCart(itemName, price) {
+      cart.push({ name: itemName, price: price });
+      total += price;
+      updateCart();
+    }
+
+    // Function to update the cart UI
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - ₹${item.price}`;
+        cartItems.appendChild(li);
+      });
+      cartTotal.textContent = total;
+    }
+
+    // Function to handle checkout
+    function checkout() {
+      alert(`Thank you for your purchase! Total: ₹${total}`);
+      cart = [];
+      total = 0;
+      updateCart();
+    }
+  </script>
+</body>
+</html>

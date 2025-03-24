@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Booking</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-image: url('hotel.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 100vh;
+    }
+
+    /* Logo Styling */
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: rgb(203, 191, 21);
+      padding: 5px 15px;
+      border: 2px solid white;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    /* Navigation Bar */
+    header {
+      background-color: black;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav {
+      margin-left: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #f06292;
+      color: white;
+      border-radius: 5px;
+    }
+
+    /* Main content */
+    .main-content {
+      position: relative;
+      height: 100vh;
+      background-image: url('hotelbg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .booking-form {
+      background-color: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+      margin-right: 100px;
+    }
+
+    .booking-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .booking-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .booking-form input, .booking-form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .booking-form button {
+      background-color: #f06292;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .text-overlay {
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .text-overlay h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .text-overlay p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .text-overlay button {
+      background-color: #f06292;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-section h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .contact-section p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .contact-section .contact-form {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 10px;
+      width: 50%;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .contact-section button {
+      background-color: #f06292;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* New Chatbot Styles */
+    #chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #f06292;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    #chatbot-container {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+    }
+
+    #chatbot-header {
+      background-color: #f06292;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+    }
+
+    #chatbot-messages {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      font-size: 14px;
+      color: #333;
+    }
+
+    #chatbot-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    #chatbot-user-input {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    #chatbot-input button {
+      background-color: #f06292;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin-left: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .chat-message {
+      margin: 10px 0;
+    }
+
+    .chat-message.user {
+      text-align: right;
+    }
+
+    .chat-message.bot {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Grand Hotel</div>
+    <nav>
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="food.html">Menu</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="faci.html">Facilities</a></li>
+        <li><a href="contact.html">contact</a></li>
+        <header>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        
+        
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="text-overlay">
+      <h1>Booking A Luxury Hotel</h1>
+      <p>We have contact with the best 2.2k Luxury Hotels in all the world.</p>
+      <button>Discover now</button>
+    </div>
+    <div class="booking-form">
+      <h2>Book Your Hotel</h2>
+      <label for="checkin">Check-in:</label>
+      <input type="text" id="checkin" placeholder="mm/dd/yyyy">
+      <label for="checkout">Check-out:</label>
+      <input type="text" id="checkout" placeholder="mm/dd/yyyy">
+      <label for="adults">Guests:</label>
+      <select id="adults">
+        <option value="1">1 Adult</option>
+        <option value="2">2 Adults</option>
+        <option value="3">3 Adults</option>
+        <option value="4">4 Adults + 1children</option>
+        <option value="5">2 Adults + 2children</option>
+      </select>
+      <label for="rooms">Rooms:</label>
+      <select id="rooms">
+        <option value="1">1 Room</option>
+        <option value="2">2 Rooms</option>
+        <option value="3">3 Rooms</option>
+        <option value="4">4 Rooms</option>
+        <option value="5">5 Rooms</option>
+      </select>
+      <button onclick="redirectToPayment()">Book Now</button>
+    </div>
+  </div>
+ <script>
+  // 
+
+// Append phone input and button to booking form
+bookingForm.appendChild(phoneInput);
+bookingForm.appendChild(confirmButton);
+
+ </script>
+ <script>TWILIO_ACCOUNT_SID=your_account_sid
+  TWILIO_AUTH_TOKEN=your_auth_token
+  TWILIO_PHONE_NUMBER=your_twilio_number
+  require('dotenv').config();
+const express = require('express');
+const twilio = require('twilio');
+
+const app = express();
+app.use(express.json());
+
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+
+app.post('/send-sms', (req, res) => {
+    const { phoneNumber } = req.body;
+
+    client.messages
+        .create({
+            body: 'Your hotel booking is successful! Thank you for choosing us.',
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: phoneNumber
+        })
+        .then(message => res.json({ success: true, message: message.sid }))
+        .catch(error => res.status(500).json({ success: false, error: error.message }));
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+function sendBookingConfirmation() {
+    const phoneNumber = document.getElementById("phone").value;
+
+    fetch('/send-sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Booking confirmed! SMS sent successfully.');
+        } else {
+            alert('Error: ' + data.error);
+        }
+    })
+    .catch(error => alert('Failed to send SMS.'));
+}
+</script>
+
+  <!-- New Chatbot -->
+  <button id="chatbot-btn" onclick="toggleChatbot()">💬</button>
+  <div id="chatbot-container">
+    <div id="chatbot-header">
+      <span>Hotel Assistant</span>
+      <button onclick="toggleChatbot()" style="background: none; border: none; color: white; font-size: 16px; cursor: pointer;">✖</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input">
+      <input type="text" id="chatbot-user-input" placeholder="Ask me anything..." onkeypress="if(event.key === 'Enter') sendMessage()">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChatbot() {
+      const chatbot = document.getElementById("chatbot-container");
+      chatbot.style.display = chatbot.style.display === "none" || chatbot.style.display === "" ? "flex" : "none";
+    }
+
+    function sendMessage() {
+      const userInput = document.getElementById("chatbot-user-input").value.trim();
+      if (!userInput) return;
+
+      const chatbox = document.getElementById("chatbot-messages");
+      chatbox.innerHTML += `<div class="chat-message user"><strong>You:</strong> ${userInput}</div>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      setTimeout(() => {
+        const botResponse = getBotResponse(userInput);
+        chatbox.innerHTML += `<div class="chat-message bot"><strong>Assistant:</strong> ${botResponse}</div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+      }, 1000);
+
+      document.getElementById("chatbot-user-input").value = "";
+    }
+
+    function getBotResponse(input) {
+      input = input.toLowerCase();
+      const responses = {
+        "hello": "Hi! How can I assist you today?",
+        "hi": "Hello! How may I help you?",
+        "book a room": "Please provide your check-in and check-out dates.",
+        "check availability": "Let me know the dates and number of guests!",
+        "food menu": "We offer seafood, vegetarian, and more. What are you craving?",
+        "facilities": "Enjoy our pool, gym, spa, and free Wi-Fi!",
+        "contact": "Reach us at info@grandhotel.com or call +1-800-GRAND.",
+        "offers": "Check out our weekend specials and family packages!"
+      };
+      return responses[input] || "Sorry, I didn’t catch that. Try asking about bookings, food, or facilities!";
+    }
+
+    function redirectToPayment() {
+      window.location.href = "payment.html";
+    }
+  </script>
+</body>
+</html>
+<!-- Hotel Location Section -->
+<div class="hotel-location" style="text-align: center; margin-top: 50px;">
+  <h2>Our Location</h2>
+  <p>Find us at our prime location for a luxurious stay.</p>
+  <div style="width: 100%; max-width: 800px; margin: 0 auto;">
+    <iframe 
+      width="100%" 
+      height="400" 
+      frameborder="0" 
+      style="border:0; border-radius: 10px;" 
+      allowfullscreen 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=Grand+Hotel&output=embed">
+    </iframe>
+  </div>
+</div>
