@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f8f8f8;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .payment-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .payment-buttons button {
+      background-color: #f06292;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #qr-code {
+      margin-top: 20px;
+      display: none;
+    }
+
+    #qr-code img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .success-message {
+      margin-top: 20px;
+      color: #4caf50; /* Green color */
+      font-size: 24px;
+      display: none;
+    }
+
+    .success-message span {
+      font-size: 36px;
+    }
+
+    .payment-status {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #f06292;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-container">
+    <h2>Complete Your Payment</h2>
+    <p>Select your preferred payment method:</p>
+
+    <div class="payment-buttons">
+      <button onclick="startPayment('upi')">UPI</button>
+      <button onclick="startPayment('gpay')">Google Pay</button>
+      <button onclick="startPayment('phonepe')">PhonePe</button>
+    </div>
+
+    <div id="qr-code">
+      <p>Scan the QR Code to pay:</p>
+      <img src="WhatsApp Image 2025-03-24 at 13.21.10_a4d7133c.jpg" alt="QR Code for Payment">
+    </div>
+
+    <div class="loader" id="loader"></div>
+
+    <div id="success-message" class="success-message">
+      <span>✔</span> Payment Successful!
+    </div>
+
+    <div class="payment-status" id="payment-status">
+      <!-- Payment status will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    function startPayment(method) {
+      // Show the QR code
+      document.getElementById("qr-code").style.display = "block";
+      document.getElementById("payment-status").innerText = "Scan the QR code to proceed...";
+
+      // Simulate a delay for scanning and payment processing
+      setTimeout(function () {
+        // Hide the QR code
+        document.getElementById("qr-code").style.display = "none";
+
+        // Show the loader
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("payment-status").innerText = "Processing your payment...";
+
+        // Simulate payment processing delay
+        setTimeout(function () {
+          // Hide the loader
+          document.getElementById("loader").style.display = "none";
+
+          // Simulate a successful transaction
+          completePayment();
+        }, 3000); // 3 seconds delay for payment processing
+      }, 3000); // 3 seconds delay for scanning
+    }
+
+    function completePayment() {
+      // Show the success message
+      document.getElementById("success-message").style.display = "block";
+      document.getElementById("payment-status").innerText = "Payment completed successfully!";
+
+      // Optional: Redirect to a thank-you page or display additional details
+      setTimeout(function () {
+        alert("Thank you for your payment!");
+        // window.location.href = "thank-you.html"; // Redirect to a thank-you page
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!-- Rooms Section -->
+<div class="room-menu">
+  <h2>Our Rooms</h2>
+  <ul>
+    <li>
+      <img src="room4.webp" alt="Deluxe Room" style="width: 150px; height: 100px; object-fit: cover;">
+      <h3>Deluxe Room</h3>
+      <p>A spacious room with luxury amenities.</p>
+      <p class="price">₹5,000 per night</p>
+      <button onclick="addToCart('Deluxe Room', 5000)">Add to Cart</button>
+    </li>
+    <li>
+      <img src="room1.jpg" alt="Suite Room" style="width: 150px; height: 100px; object-fit: cover;">
+      <h3>Suite Room</h3>
+      <p>Room no 101.</p>
+      <p class="price">₹12,000 per night</p>
+      <button onclick="addToCart('Suite Room', 12000)">Add to Cart</button>
+    </li>
+    <li>
+      <img src="room2.jpg" alt="Family Room" style="width: 150px; height: 100px; object-fit: cover;">
+      <h3>Family Room</h3>
+      <p>Room no 102.</p>
+      <p class="price">₹7,000 per night</p>
+      <button onclick="addToCart('Family Room', 7000)">Add to Cart</button>
+    </li>
+    <li>
+      <img src="room3.jpg" alt="Single Room" style="width: 150px; height: 100px; object-fit: cover;">
+      <h3>Single Room</h3>
+      <p>Room no 103</p>
+      <p class="price">₹3,000 per night</p>
+      <button onclick="addToCart('Single Room', 3000)">Add to Cart</button>
+    </li>
+  </ul>
+</div>
+<style>
+  .room-menu img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+  }
+</style>
+<!-- Cart Section -->
+<div class="cart">
+  <h3>Your Cart</h3>
+  <ul id="cart-items"></ul>
+  <p>Total: ₹<span id="cart-total">0</span></p>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+  let cart = [];
+  let total = 0;
+
+  // Function to add items to the cart
+  function addToCart(itemName, price) {
+    cart.push({ name: itemName, price: price });
+    total += price;
+    updateCart();
+  }
+
+  // Function to update the cart UI
+  function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} - ₹${item.price}`;
+      cartItems.appendChild(li);
+    });
+    cartTotal.textContent = total;
+  }
+
+  // Function to handle checkout
+  function checkout() {
+    alert(`Thank you for your purchase! Total: ₹${total}`);
+    cart = [];
+    total = 0;
+    updateCart();
+  }
+</script>
+</body>
+</html>
